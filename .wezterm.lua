@@ -8,10 +8,13 @@ local config = wezterm.config_builder()
 
 -- For example, changing the color scheme:
 config.color_scheme = "Campbell"
-config.window_background_opacity = 0.95 -- 1.0 = opaque, 0.0 = fully transparent
+config.window_background_opacity = 0.97 -- 1.0 = opaque, 0.0 = fully transparent
 
 config.enable_tab_bar = true
-config.default_prog = { "pwsh.exe" } -- or "cmd.exe"
+if wezterm.target_triple:find("windows") then
+	config.default_prog = { "pwsh.exe" }
+end
+
 config.window_padding = {
 	left = 8,
 	right = 8,
@@ -19,10 +22,10 @@ config.window_padding = {
 	bottom = 4,
 }
 config.scrollback_lines = 5000
+config.audible_bell = "Disabled"
 
 config.keys = {
-	{ key = "C", mods = "CTRL", action = wezterm.action.CopyTo("Clipboard") },
-	{ key = "V", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
+	{ key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
 }
 
 -- and finally, return the configuration to wezterm
