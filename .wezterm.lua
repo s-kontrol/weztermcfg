@@ -7,8 +7,12 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
+config.font = wezterm.font("Cascadia Code")
 config.color_scheme = "Campbell"
-config.window_background_opacity = 0.97 -- 1.0 = opaque, 0.0 = fully transparent
+config.colors = {
+	background = "#1e1e1e", -- gray
+}
+config.window_background_opacity = 0.99 -- 1.0 = opaque, 0.0 = fully transparent
 
 config.enable_tab_bar = true
 if wezterm.target_triple:find("windows") then
