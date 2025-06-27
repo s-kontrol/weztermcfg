@@ -4,8 +4,6 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
-
 -- For example, changing the color scheme:
 config.font = wezterm.font("Cascadia Code")
 config.color_scheme = "Campbell"
@@ -30,6 +28,8 @@ config.audible_bell = "Disabled"
 
 config.keys = {
 	{ key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
+	{ key = "1", mods = "CTRL", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
+	{ key = "F4", mods = "CTRL", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
 }
 
 -- and finally, return the configuration to wezterm
