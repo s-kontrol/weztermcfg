@@ -5,8 +5,6 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- For example, changing the color scheme:
-config.font = wezterm.font("Cascadia Code", { weight = "Regular" })
-config.color_scheme = "Campbell"
 config.font_size = 11.5
 config.freetype_load_target = "Light" -- improves clarity
 config.freetype_render_target = "Normal"
@@ -34,10 +32,12 @@ config.colors = {
 		"#ffffff",
 	},
 }
-config.window_background_opacity = 1.0 -- 1.0 = opaque, 0.0 = fully transparent
+config.window_background_opacity = 0.9 -- 1.0 = opaque, 0.0 = fully transparent
 
 config.enable_tab_bar = true
 if wezterm.target_triple:find("windows") then
+	config.font = wezterm.font("Cascadia Code", { weight = "Regular" })
+	config.color_scheme = "Campbell"
 	config.default_prog = { "pwsh.exe" }
 end
 
@@ -53,7 +53,7 @@ config.audible_bell = "Disabled"
 config.keys = {
 	{ key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
 	{ key = "1", mods = "CTRL", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
-	{ key = "F4", mods = "CTRL", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
+	{ key = "F4", mods = "SHIFT", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
 }
 
 -- and finally, return the configuration to wezterm
